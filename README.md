@@ -26,7 +26,7 @@
 * Exploratory Data Analysis
   - [ ] Create univariate plots of each attribute
   - [ ] Create bivariate plots of all pair-wise combinations of attributes
-  - [ ] Create bivariate plots of each attribute with the output attribute
+  - [ ] Create bivariate plots of each attribute with the target attribute
   - [ ] Check EDA kernels on Kaggle for inspiration
 
 * Preprocessing (Ref: http://www.cs.ccsu.edu/~markov/ccsu_courses/datamining-3.html)
