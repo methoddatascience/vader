@@ -37,8 +37,9 @@
   - [ ] Data discretization: replace numerical attributes with nominal/discrete ones
 
 * Feature Engineering
-  - [ ] Task 1
-  - [ ] Task 2
+  - [ ] Choosing the columns based on correlation score 
+  - [ ] Eliminating features which are not independent
+  - [ ] Do we need to do PCA ?  
   
 * Model(s) Tuning
   - [ ] Task 1
