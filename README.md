@@ -6,14 +6,14 @@
 
 ## Data Science workFlow (Tasks to be mentioned under each)
 * Divide Forces
-  - [ ] Individual notebooks
-  - [ ] Review notebooks collectively
-  - [ ] Agree on components to use or merge into kernel
+  - [x] Individual notebooks
+  - [x] Review notebooks collectively
+  - [x] Agree on components to use or merge into kernel
 
 * Data Setup
-  - [ ] Get the data
-  - [ ] Store the data locally 
-  - [ ] Setup local working repository
+  - [x] Get the data
+  - [x] Store the data locally 
+  - [x] Setup local working repository
 
 * Literature Review
   - [ ] Read Kaggle blog and articles of winners for ideas
