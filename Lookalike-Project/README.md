@@ -7,6 +7,7 @@ They’ve asked MDS to (1) come up with a method of finding lookalike audiences 
   - [] Continue on Segun's work - K Means clustering or some other technique to get clusters around True customers data - @Lakshmi
   - [] Explore the possibility of reticulate libary in R which allows to call a python module
   - [] Explore and plot K-means clustering visuals using Shiny R 
+  - [] Decide on the tool part by the end of week (in the weekly meeting) - @team 
   
 ##Future Tasks
  - [] User should be able to upload input data file and get lookalike audience
