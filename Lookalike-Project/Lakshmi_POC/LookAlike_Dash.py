@@ -20,7 +20,7 @@ app = Dash(__name__)
 application = app.server
 
 # load the input dataset
-inputData = pd.read_csv('D:/MDS/Client/red_crown_sample_data1.csv')
+inputData = pd.read_csv('../data/red_crown_sample_data1.csv')
 
 # values for our dropdown
 dropdown_val = ['score1', 'score2', 'score3']
@@ -47,6 +47,13 @@ app.layout = html.Div(className="container", style={"padding": "10px"}, children
 					 {'label': val, 'value': val} for val in dropdown_val
 				 ],
 				 value=dropdown_val[0]
+				 ),
+
+	dcc.Dropdown(className="col-md-4", id="dropdown_y",
+				 options=[
+					 {'label': val, 'value': val} for val in dropdown_val
+				 ],
+				 value=dropdown_val[1]
 				 ),
 
 
@@ -79,16 +86,18 @@ app.scripts.append_script({"external_url": "https://maxcdn.bootstrapcdn.com/boot
 #                                                #
 ##################################################
 @app.callback(Output('cluster', 'figure'),
-			  [ Input('slider_n', 'value')])
-def update_graph(n):
+			  [ Input('dropdown_x', 'value'), Input('dropdown_y', 'value'), Input('slider_n', 'value')])
+def update_graph(x_val, y_val, n):
 	# build our dataframe
 
-	inputData['customer'] = inputData['customer'].astype(int) # let it be False/True
+	# build our dataframe
+	df = inputData[['score1', 'score2', 'score3']]
+	df['target'] = inputData['customer'].astype(int).values
 
 	###############################################################################
 	# prepare for modeling
 	# assign your x and y values
-	X = inputData[['score1', 'score2', 'score3']]
+	X = df[['score1', 'score2', 'score3']]
 
 	#inputData[['score1', 'score2', 'score3']][0:1000].values
 
@@ -99,18 +108,17 @@ def update_graph(n):
 	kmeans.fit(X)
 
 	# build our resutls dataframe
-	inputData["predicted_classes"] = kmeans.labels_
+	df["predicted_classes"] = kmeans.labels_
 
 	# count number of clusters
-	num_of_clusters = inputData["predicted_classes"].nunique()
+	num_of_clusters = df["predicted_classes"].nunique()
 	# create empty data list to store traces
 	data = []
 	# plot the actual labels
-	x_val = 'score1'
-	y_val = 'customer'
+
 	for i in range(num_of_clusters):
 		# split up the clusters to visualize and extract sepal length and width
-		cluster_df = inputData[inputData["predicted_classes"] == i]
+		cluster_df = df[df["predicted_classes"] == i]
 		data.append({
 			"x": cluster_df[x_val],
 			"y": cluster_df[y_val],
@@ -122,6 +130,7 @@ def update_graph(n):
 				size=10
 			)
 		})
+
 
 	layout = {
 		"hovermode": "closest",
@@ -145,4 +154,4 @@ def update_graph(n):
 
 
 if __name__ == '__main__':
-	app.run_server()
+	application.run()
