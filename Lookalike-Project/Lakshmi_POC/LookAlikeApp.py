@@ -11,7 +11,7 @@ from sklearn import datasets
 import pandas as pd
 
 
-inputData = pd.read_csv('D:/MDS/Client/red_crown_sample_data1.csv')
+inputData = pd.read_csv('../data/red_crown_sample_data1.csv')
 
 #np.random.seed(5) # need to understand this
 
