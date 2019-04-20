@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output
 import plotly.plotly as py
 from plotly.graph_objs import *
 import dash_table
-from sklearn.cluster import KMeans
 import numpy as np
 import pandas as pd
 
@@ -113,7 +112,7 @@ def update_graph(x_val, y_val):
 	                "x": cluster_df[x_val],
 	                "y": cluster_df[y_val],
 	                "type": "scatter",
-	                "name": f"Cluster_{i}",
+	                "name": "Cluster_"+str(i),
 	                "mode": "markers",
 	                "marker": dict(
 	                    color = colors[i],
@@ -130,14 +129,14 @@ def update_graph(x_val, y_val):
 	    "b": 40,
 	    "l": 60
 	  },
-	  "title": f"Customer Dataset - {x_val} vs {y_val}",
+	  "title": "Customer Dataset - "+ x_val + " vs " + y_val,
 	  "xaxis": {
 	    "domain": [0, 1],
-	    "title": f"{x_val}"
+	    "title": x_val
 	  },
 	  "yaxis": {
 	    "domain": [0, 1],
-	    "title": f"{y_val}"
+	    "title": y_val
 	  }
 	}
 
