@@ -15,10 +15,10 @@ app = Dash(__name__)
 application = app.server
 
 # load the dataset
-df_data = pd.read_csv('../data/red_crown_sample_data1.csv')
+df_data = pd.read_csv('data/red_crown_sample_data1.csv')
 
 # remove date attributes
-df_data = df_data.drop(columns=['submission_date','first_contact','contract_length'])
+df_data = df_data.drop(['submission_date','first_contact','contract_length'], axis=1)
 
 # convert bool attributes upgraded
 df_data['upgraded'] = df_data.upgraded.apply(lambda x: str(x))
@@ -138,17 +138,7 @@ app.layout = html.Div([
 		]),
 
 
-                # dcc.Graph(
-                #     id='example-graph-1',
-                #     figure={
-                #         'data': [
-                #             {'x': [1, 2, 3], 'y': [1, 4, 1],
-                #                 'type': 'bar', 'name': 'SF'},
-                #             {'x': [1, 2, 3], 'y': [1, 2, 3],
-                #              'type': 'bar', 'name': u'Montréal'},
-                #         ]
-                #     }
-                # )
+
         dcc.Tab(label='Potential Customers', children=[
 			html.Div([
 						html.H6("Clustering of potential customers"),
@@ -251,7 +241,7 @@ def update_graph(x_val, y_val):
 	                "x": cluster_df[x_val],
 	                "y": cluster_df[y_val],
 	                "type": "scatter",
-	                "name": f"Cluster_{i}",
+	                "name": "Cluster_"+ str(i),
 	                "mode": "markers",
 	                "marker": dict(
 	                    color = colors[i],
@@ -268,14 +258,14 @@ def update_graph(x_val, y_val):
 	    "b": 40,
 	    "l": 60
 	  },
-	  "title": f"Customer Dataset - {x_val} vs {y_val}",
+	  "title": "Customer Dataset - "+ x_val + " vs " + y_val,
 	  "xaxis": {
 	    "domain": [0, 1],
-	    "title": f"{x_val}"
+	    "title": x_val
 	  },
 	  "yaxis": {
 	    "domain": [0, 1],
-	    "title": f"{y_val}"
+	    "title": y_val
 	  }
 	}
 
@@ -349,7 +339,7 @@ def update_graph(x_val, y_val):
 	                "x": cluster_df[x_val],
 	                "y": cluster_df[y_val],
 	                "type": "scatter",
-	                "name": f"Cluster_{i}",
+	                "name": "Cluster_"+ str(i),
 	                "mode": "markers",
 	                "marker": dict(
 	                    color = colors[i],
@@ -377,14 +367,14 @@ def update_graph(x_val, y_val):
 	    "b": 40,
 	    "l": 60
 	  },
-	  "title": f"Potential Customer Dataset - {x_val} vs {y_val}",
+	  "title": "Potential Customer Dataset - " + x_val + " vs "+y_val,
 	  "xaxis": {
 	    "domain": [0, 1],
-	    "title": f"{x_val}"
+	    "title": x_val
 	  },
 	  "yaxis": {
 	    "domain": [0, 1],
-	    "title": f"{y_val}"
+	    "title": y_val
 	  }
 	}
 
@@ -409,7 +399,7 @@ def update_graph(x_val, y_val):
 			y=cluster_df[y_val],
 			# type='scatter',
 			mode='markers',
-			name=f'class_{i}',
+			name='class_' + str(i),
 			marker=dict(
 				color=colors_1[i],
 				size=18
@@ -428,7 +418,7 @@ def update_graph(x_val, y_val):
 				y=cluster_df2[y_val],
 				# type='scatter',
 				mode='markers',
-				name=f'class_{j}',
+				name='class_' + str(j),
 				marker=dict(
 					color=colors_2[j],
 					size=8
@@ -449,12 +439,12 @@ def update_graph(x_val, y_val):
 			"b": 40,
 			"l": 60
 		},
-		"title": f"LookAlike Audience Dataset - {x_val} vs {y_val}",
+		"title": "LookAlike Audience Dataset - " + x_val + " vs " + y_val,
 		"xaxis": {
-			"title": f"{x_val}"
+			"title": x_val
 		},
 		"yaxis": {
-			"title": f"{y_val}"
+			"title": y_val
 		}
 	}
 
